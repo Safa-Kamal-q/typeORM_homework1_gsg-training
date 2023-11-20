@@ -9,15 +9,16 @@ const dataSource = new DataSource({
   password: '',
   database: 'register_API',
   entities: [User],
-  migrations: ['./**/migration/*.ts'],
-  // synchronize: true,
+  // migrations: ['./**/migration/*.ts'],
+  synchronize: true,
   logging: false
 })
 
-dataSource.initialize().then(() => {
-  console.log("Connected to DB!");
-}).catch(err => {
-  console.error('Failed to connect to DB: ' + err);
-});
+export const initDB = async () =>
+  await dataSource.initialize().then(() => {
+    console.log("Connected to DB!");
+  }).catch(err => {
+    console.error('Failed to connect to DB: ' + err);
+  });
 
 export default dataSource;

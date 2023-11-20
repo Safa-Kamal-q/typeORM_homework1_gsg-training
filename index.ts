@@ -1,6 +1,6 @@
 import express from 'express';
 import "reflect-metadata"
-import db from './db/dataSource.js';
+import dataSource, { initDB } from './db/dataSource.js';
 import userRouter from './router/user.js'
 
 const app = express();
@@ -19,5 +19,5 @@ app.use((req, res) => {
 
 app.listen(PORT, () => {
     console.log(`App is running and Listening on port ${PORT}`);
-    db.initialize();
+    initDB();
 });
